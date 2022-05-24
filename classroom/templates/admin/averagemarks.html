@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form action="/average/marks/" method="post">
+
+      {% csrf_token %}
+
+      <select name="student">
+        {% for student in students %}
+        <option value="{{student.id}}">{{student.user.get_full_name}}</option>
+      {% endfor %}
+
+      <input type="date" required name="start_from">
+      <input type="date" required name="to_date">
+
+      <input type="submit">
+
+</select>
+
+
+    </form>
+
+
+    {% if is_result %}
+
+    <h3>{{student.user.get_full_name}}</h3>
+    <br>
+    <h3>{{average_percentage}}</h3>
+
+    {% else %}
+
+    <h3>Not found result</h3>
+
+    {% endif %}
+  </body>
+</html>
